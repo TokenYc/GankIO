@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.jiongbull.jlog.JLog;
 
+import net.archeryc.gankio.POJO.ImagePOJO;
 import net.archeryc.gankio.POJO.Repo;
 import net.archeryc.gankio.api.Api;
 import net.archeryc.gankio.api.RequestInterface;
@@ -21,35 +22,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
+    private Api api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        api = new Api();
 
-
-        JLog.init(this)
-                .setDebug(BuildConfig.DEBUG);
-
-        Api api = new Api();
-
-        RequestInterface.GithubService service = api.getRepos();
-
-        Call<List<Repo>> repos = service.listRepos("tokenyc");
-
-
-        repos.enqueue(new Callback<List<Repo>>() {
+        api.getImages(0, new Callback<List<ImagePOJO>>() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                Log.d("yangchen", response.body().toString());
+            public void onResponse(Call<List<ImagePOJO>> call, Response<List<ImagePOJO>> response) {
+
             }
 
             @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
+            public void onFailure(Call<List<ImagePOJO>> call, Throwable t) {
 
             }
         });
-
 
     }
 }

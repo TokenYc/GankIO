@@ -1,23 +1,22 @@
 package net.archeryc.gankio.api;
 
-import android.util.Log;
+import net.archeryc.gankio.POJO.ImagePOJO;
 
-import java.io.IOException;
-import java.util.logging.Logger;
+import java.util.List;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Callback;
+
 
 /**
  * Created by .cc on 2016/3/30.
  */
 public class Api {
 
-    private static String BASE_URL ="https://api.github.com/";
+    private static String BASE_URL = "http://gank.io/api/data/";
 
     Retrofit retrofit;
     OkHttpClient okHttpClient;
@@ -33,7 +32,9 @@ public class Api {
                 .build();
     }
 
-    public RequestInterface.GithubService getRepos() {
-        return retrofit.create(RequestInterface.GithubService.class);
+
+    public void getImages(int page, Callback<List<ImagePOJO>> callback) {
+        Call<List<ImagePOJO>> call = retrofit.create(RequestInterface.ImageService.class).listImages(page);
+        call.enqueue(callback);
     }
 }
