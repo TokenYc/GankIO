@@ -24,7 +24,7 @@ public class Api {
     public Api() {
 
         okHttpClient = new OkHttpClient.Builder().addInterceptor(new LogInterceptor()).build();
-
+//        okHttpClient = new OkHttpClient.Builder().build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
@@ -33,8 +33,8 @@ public class Api {
     }
 
 
-    public void getImages(int page, Callback<List<ImagePOJO>> callback) {
-        Call<List<ImagePOJO>> call = retrofit.create(RequestInterface.ImageService.class).listImages(page);
+    public void getImages(int page, Callback<ImagePOJO> callback) {
+        Call<ImagePOJO> call = retrofit.create(RequestInterface.ImageService.class).listImages(page);
         call.enqueue(callback);
     }
 }

@@ -1,6 +1,7 @@
 package net.archeryc.gankio.api;
 
 
+
 import com.jiongbull.jlog.JLog;
 
 import java.io.IOException;
@@ -24,7 +25,8 @@ public class LogInterceptor implements Interceptor{
         long t2 = System.nanoTime();
         JLog.d("yangchen",String.format("Received response for %s in %.1fms%n%s",
                 response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-        JLog.json(response.body().string());
+        String str=response.body().toString();
+        JLog.json(str);
         return response;
     }
 }

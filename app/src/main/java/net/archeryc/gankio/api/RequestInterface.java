@@ -30,6 +30,6 @@ public class RequestInterface {
 
     public interface ImageService {
         @GET("福利/10/{page}")
-        Call<List<ImagePOJO>> listImages(@Path("page") int page);
+        Call<ImagePOJO> listImages(@Path("page") int page);
     }
 }

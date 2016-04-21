@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".imageLoader.LongImageActivity"
+            android:hardwareAccelerated="false"
+            ></activity>
+        <meta-data
+            android:name="net.archeryc.gankio.imageLoader.MyGlideModule"
+            android:value="GlideModule" />
     </application>
 
 </manifest>

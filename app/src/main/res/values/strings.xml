@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GankIO</string>
+    <string name="save_to_local">保存到手机</string>
+
 </resources>
